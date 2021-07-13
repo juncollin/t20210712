@@ -16,6 +16,7 @@ struct ContentView : View {
 
 struct ARViewContainer: UIViewRepresentable {
     
+    
     func makeUIView(context: Context) -> ARView {
         
         let arView = ARView(frame: .zero)
@@ -29,19 +30,34 @@ struct ARViewContainer: UIViewRepresentable {
         let anchor = AnchorEntity()
         arView.scene.anchors.append(anchor)
         
-        // ③ Plane生成とVideoMaterial設定
-        let planeMesh = MeshResource.generatePlane(width: 0.8, height: 0.45)
-        let material = VideoMaterial(avPlayer: player)
-        let planeModel = ModelEntity(mesh: planeMesh, materials: [material])
+        let planeModel = ModelEntity(
+            mesh: .generatePlane(width: 1.0, height: 1.0), materials: [SimpleMaterial(color: .red, isMetallic: false)]
+        )
+
+        let mtlLibrary = MTLCreateSystemDefaultDevice()!
+          .makeDefaultLibrary()!
+
+        do {
+            let surfaceShader = CustomMaterial.SurfaceShader(
+                named: "simpleSurface", in: mtlLibrary
+            )
+            try planeModel.modifyMaterials {
+                let mat = try CustomMaterial(from: $0, surfaceShader: surfaceShader)
+                return mat
+            }
+        } catch {
+            assertionFailure("Failed to set a custom shader on the octopus \(error)")
+        }
+        
         planeModel.position = SIMD3<Float>(0.0, 0.0, -1.0)
         anchor.addChild(planeModel)
         return arView
-        
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {}
     
 }
+    
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
