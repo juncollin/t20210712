@@ -42,7 +42,11 @@ struct ARViewContainer: UIViewRepresentable {
                 named: "simpleSurface", in: mtlLibrary
             )
             try planeModel.modifyMaterials {
-                let mat = try CustomMaterial(from: $0, surfaceShader: surfaceShader)
+                var mat = try CustomMaterial(from: $0, surfaceShader: surfaceShader)
+                let tex = try TextureResource.load(named: "number13.png")
+                mat.custom.texture = .init(tex)
+                //try! MaterialColorParameter.texture(
+//                    TextureResource.load(named: "number.png"))
                 return mat
             }
         } catch {

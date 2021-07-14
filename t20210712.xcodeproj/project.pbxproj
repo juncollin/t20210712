@@ -15,6 +15,8 @@
 		A354488B269DD91400A23BAC /* 142492706.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A354488A269DD91400A23BAC /* 142492706.jpg */; };
 		A354488D269DE1E400A23BAC /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = A354488C269DE1E400A23BAC /* Common.swift */; };
 		A354488F269DE2A700A23BAC /* Shader.metal in Sources */ = {isa = PBXBuildFile; fileRef = A354488E269DE2A700A23BAC /* Shader.metal */; };
+		A3544891269F8A7D00A23BAC /* number1234.png in Resources */ = {isa = PBXBuildFile; fileRef = A3544890269F8A7D00A23BAC /* number1234.png */; };
+		A3544893269F92C600A23BAC /* number13.png in Resources */ = {isa = PBXBuildFile; fileRef = A3544892269F92C600A23BAC /* number13.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		A354488A269DD91400A23BAC /* 142492706.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 142492706.jpg; sourceTree = "<group>"; };
 		A354488C269DE1E400A23BAC /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		A354488E269DE2A700A23BAC /* Shader.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shader.metal; sourceTree = "<group>"; };
+		A3544890269F8A7D00A23BAC /* number1234.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number1234.png; sourceTree = "<group>"; };
+		A3544892269F92C600A23BAC /* number13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = number13.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +65,10 @@
 			children = (
 				A354487A269C8B5A00A23BAC /* AppDelegate.swift */,
 				A354487C269C8B5A00A23BAC /* ContentView.swift */,
-				A354488C269DE1E400A23BAC /* Common.swift */,
 				A354488E269DE2A700A23BAC /* Shader.metal */,
+				A3544890269F8A7D00A23BAC /* number1234.png */,
+				A3544892269F92C600A23BAC /* number13.png */,
+				A354488C269DE1E400A23BAC /* Common.swift */,
 				A354487E269C8B5A00A23BAC /* Experience.rcproject */,
 				A354488A269DD91400A23BAC /* 142492706.jpg */,
 				A3544880269C8B5D00A23BAC /* Assets.xcassets */,
@@ -137,8 +143,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3544893269F92C600A23BAC /* number13.png in Resources */,
 				A3544884269C8B5D00A23BAC /* Preview Assets.xcassets in Resources */,
 				A3544881269C8B5D00A23BAC /* Assets.xcassets in Resources */,
+				A3544891269F8A7D00A23BAC /* number1234.png in Resources */,
 				A354488B269DD91400A23BAC /* 142492706.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
