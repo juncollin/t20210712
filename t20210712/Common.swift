@@ -25,4 +25,12 @@ internal extension Entity {
     func set(_ shader: CustomMaterial.SurfaceShader) throws {
         try modifyMaterials { try CustomMaterial(from: $0, surfaceShader: shader) }
     }
+    
+    
+    /// Billboards the entity to the targetPosition which should be provided in world space.
+    func billboard(targetPosition: SIMD3<Float>) {
+        look(at: targetPosition, from: position(relativeTo: nil), relativeTo: nil)
+    }
+
+
 }

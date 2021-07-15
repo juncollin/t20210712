@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealityKit
+import Combine
 
 struct ContentView : View {
     var body: some View {
@@ -15,6 +16,7 @@ struct ContentView : View {
 }
 
 struct ARViewContainer: UIViewRepresentable {
+    
     
     
     func makeUIView(context: Context) -> ARView {
@@ -31,8 +33,11 @@ struct ARViewContainer: UIViewRepresentable {
         arView.scene.anchors.append(anchor)
         
         let planeModel = ModelEntity(
-            mesh: .generatePlane(width: 1.0, height: 1.0), materials: [SimpleMaterial(color: .red, isMetallic: false)]
+            mesh: .generatePlane(width: 0.5, height: 1.0), materials: [SimpleMaterial(color: .red, isMetallic: false)]
         )
+//        let planeModel = ModelEntity(
+//            mesh: .generatePlane(width: 1.0, height: 1.0), materials: [SimpleMaterial(color: .red, isMetallic: false)]
+//        )
 
         let mtlLibrary = MTLCreateSystemDefaultDevice()!
           .makeDefaultLibrary()!
@@ -43,6 +48,7 @@ struct ARViewContainer: UIViewRepresentable {
             )
             try planeModel.modifyMaterials {
                 var mat = try CustomMaterial(from: $0, surfaceShader: surfaceShader)
+//                let tex = try TextureResource.load(named: "number1234.png")
                 let tex = try TextureResource.load(named: "number13.png")
                 mat.custom.texture = .init(tex)
                 //try! MaterialColorParameter.texture(
@@ -50,15 +56,23 @@ struct ARViewContainer: UIViewRepresentable {
                 return mat
             }
         } catch {
-            assertionFailure("Failed to set a custom shader on the octopus \(error)")
+            assertionFailure("Failed to set a custom shader \(error)")
         }
         
         planeModel.position = SIMD3<Float>(0.0, 0.0, -1.0)
         anchor.addChild(planeModel)
+        
+        // Billboardやる？
+        arView.scene.subscribe(to: SceneEvents.Update.self) { [self] _ in
+            planeModel.billboard(targetPosition: arView.cameraTransform.translation)
+        } //.store(in: &cancellables)
+        
         return arView
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+//        planeModel.billboard(targetPosition: uiView.cameraTransform.translation)
+    }
     
 }
     

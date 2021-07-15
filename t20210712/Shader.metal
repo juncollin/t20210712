@@ -14,6 +14,7 @@ constexpr sampler samplerBilinear(coord::normalized,
                                  filter::linear,
                                  mip_filter::nearest);
 
+
 [[visible]]
 void simpleSurface(realitykit::surface_parameters params)
 {
@@ -25,10 +26,9 @@ void simpleSurface(realitykit::surface_parameters params)
     float tim = params.uniforms().time();
     
     float2 uv = params.geometry().uv0();
-    uv.y += (int(tim) % 10) * 0.1;
+    uv.y += (int(tim * 500) % 100) * 0.01;
 
     uv.y = 1.0 - uv.y;
-    
 
     auto surface = params.surface();
     auto tex = params.textures();
